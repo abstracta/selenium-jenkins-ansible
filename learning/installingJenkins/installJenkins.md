@@ -38,7 +38,7 @@ ansible-playbook $playbook.yml --ask-become-pass
 
 You should see an output similar to the following one:
 
-![Playbook execution](/img/Capture1.PNG)
+![Playbook execution](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/installingJenkins/img/Capture1.PNG)
 
 These messages tell us that java and jenkins were installed correctly, that jenkins is running and also tell us the initial admin password, which we'll need in order to configure our Jenkins instance.
 
