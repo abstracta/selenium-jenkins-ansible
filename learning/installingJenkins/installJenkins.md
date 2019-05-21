@@ -18,22 +18,22 @@ sudo apt install git
 
 Now we are all set!
 
-Execute the following command in order to clone the repository:
+Execute the following command in order to clone this repository:
 
 ``` sh
-git clone $repositoryURL
+git clone https://github.com/abstracta/selenium-jenkins-ansible.git
 ```
 
 Then, move into the directory which contains the playbooks:
 
 ``` sh
-cd $playbookDirectory
+cd provisioning/playbooks
 ```
 
 And run the playbook with the following command:
 
 ``` sh
-ansible-playbook $playbook.yml --ask-become-pass
+ansible-playbook installJenkins.yml --ask-become-pass
 ```
 
 You should see an output similar to the following one:

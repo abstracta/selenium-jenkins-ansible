@@ -6,13 +6,13 @@ En esta sección van a encontrar guías o tutoriales sobre como realizar varias 
 
 In this section, you will find guides or how-to's on several tasks you will probably face sooner or later when working with Jenkins.
 
-## Provisioning / Aprovisionamiento
+## [Provisioning / Aprovisionamiento](/provisioning/README.md)
 
 En esta sección van a encontrar varios playbooks de Ansible que van a poder usar para configurar rápidamente sus servidores, de manera de no tener problemas de dependencias a la hora de usar los templates que van a poder encontrar en este repositorio.
 
 In this section you will find Ansible playbooks to help get you up and running quickly with our templates, by managing the desired state configuration in order for you not to worry about the dependencies.
 
-## Templates
+## [Templates](/templates/README.md)
 
 En esta sección van a encontrar templates mostrando un pipeline básico usando un stack particular de tecnologías, por ejemplo un pipeline que clone un repositorio que contiene un proyecto Maven con pruebas usando Selenium, las ejecute y analice los resultados con el plugin de JUnit.
 
