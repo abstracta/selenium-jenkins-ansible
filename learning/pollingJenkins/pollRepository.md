@@ -4,11 +4,7 @@ As you go forward in your Jenkins journey, sooner or later you will find that yo
 
 We should clarify that there are two ways of configuring jobs to work with repositories: webhooks and polling. Webhooks are a way of activity in your repository triggering actions on your Jenkins server, for example when there are modifications made to the code in a certain branch. Polling is a way of achieving the same result as webhooks but in a different way: the Jenkins server uses a cron expression to configure with which frequency it should check for changes in the remote repository.
 
-## Polling a repository
-
-We are going to see how to poll a repository, and in order to do that we have some prerequisites.
-
-### Creating credentials in Jenkins
+## Creating credentials in Jenkins
 
 First, we must create the credentials which Jenkins is going to use to check for changes in our repository. In order to do that, we have to go to Jenkins Home -> Credentials -> System -> Global Credentials -> Add Credentials.
 
@@ -22,7 +18,7 @@ After you click on the OK button, you should be able to go to Jenkins Home -> Cr
 
 ![Credentials screen](../Images/Capture6.PNG)
 
-### Configuring a job to poll a repository
+## Configuring a job to poll a repository
 
 So, now that we have our credentials, we need to create a git repository using those. Once you have created it, open Jenkins Home again, go to New Item and inside it create a new pipeline.
 
@@ -51,3 +47,9 @@ What this snippets tells Jenkins is to check for changes in the repository every
 In your execution's console output you should see something like this:
 
 ![Example execution](../Images/Capture16.PNG)
+
+## Webhooks
+
+As we previously mentioned, there is another way of integrating Jenkins with your repositories and that is using webhooks. This is a way of configuring your repository to alert Jenkins whenever a change is pushed to a certain branch for example, and in turn Jenkins triggers a certain job or pipeline.
+
+The issue here is that you are probably going to be working with your Jenkins repository in a private network, and in order to use Jenkins your repository should be able to notify your Jenkins that it should act, so we are skipping that part for now.
