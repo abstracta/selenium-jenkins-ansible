@@ -12,7 +12,7 @@ Go to Manage Jenkins -> Configure System and scroll down to the Extended E-Mail 
 
 One thing that the default email notification plugin has(not extended email notification plugin, just email notification) is the posibility of sending a test email using the configuration you input into it, which comes in really handy to test wether that part works before building a pipeline which sends emails and trying to figure out where the error is.
 
-![How we configured our account](../Images/Capture13.PNG)
+![How we configured our account](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/sendingMails/img/Capture13.PNG)
 
 This is how our configuration looks, as you can see we did what we advise you do, which is testing that the config is correct before trying to use it inside a pipeline. If you are using gmail's smtp service, you will have to enable insecure applications(your local jenkins qualifies as that) to send email using your credentials. This can be checked by just going into your inbox and following the instructions they will send you in an email if jenkins tells you that it failed to send the test email.
 
@@ -28,7 +28,7 @@ Now we are going to create a pipeline that clones the maven repository we used i
 node {
     try{  
         stage('Clone maven project from repository') {
-            git url: 'https://github.com/sobraljuanpa/mavenTest.git', branch: 'master', credentials: 'githubCredentials'
+            git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
         }
         stage('Check contents of pom.xml') {
             sh 'cat pom.xml'
@@ -49,8 +49,8 @@ node {
 
 After two executions, I got this email in my inbox:
 
-![Recieved email](../Images/Capture14.PNG)
+![Recieved email](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/sendingMails/img/Capture14.PNG)
 
 And this is how the log looks, side by side with the execution log:
 
-![Recieved log comparison with execution](../Images/Capture15.PNG)
+![Recieved log comparison with execution](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/sendingMails/img/Capture15.PNG)
