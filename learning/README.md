@@ -2,4 +2,4 @@
 
 + Installing your first Jenkins server [english](installingJenkins/installJenkins.md)/[español](installingJenkins/instalarJenkins.md)
 
-+ Working with repositories in Jenkins [english](pollingRepo/pollRepository.md)/[español](pollingRepo/pollearRepositorio.md)
++ Working with repositories in Jenkins [english](pollingJenkins/pollRepository.md)/[español](pollingJenkins/pollearRepositorio.md)
