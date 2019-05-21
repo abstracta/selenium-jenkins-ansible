@@ -1,6 +1,6 @@
 # selenium-jenkins-ansible
 
-## Learning / Aprendizaje
+## [Learning / Aprendizaje](/learning/README.md)
 
 En esta sección van a encontrar guías o tutoriales sobre como realizar varias tareas comunes a la mayoría de los escenarios en los que nos vamos a encontrar cuando trabajemos con Jenkins.
 
