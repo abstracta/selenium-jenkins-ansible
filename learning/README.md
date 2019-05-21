@@ -5,3 +5,5 @@
 + Working with repositories in Jenkins [english](pollingJenkins/pollRepository.md)/[español](pollingJenkins/pollearRepositorio.md)
 
 + Sending emails with Jenkins [english](sendingMails/sendingMails.md)
+
++ Running tests using Maven [english](mavenTests/mavenTests.md)
