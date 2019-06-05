@@ -48,6 +48,26 @@ In your execution's console output you should see something like this:
 
 ![Example execution](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/pollingJenkins/img/Capture16.PNG)
 
+## Working with a particular branch
+If you use a pipeline as the one before, it will clone master branch's contents by default. However, this may not always be what we want, and so you can tell Jenkins which branch to work with. In order to do that, you just have to change the previous pipeline to the following:
+
+``` groovy
+node {
+
+    properties([pipelineTriggers([pollSCM('* * * * *')])])
+
+    stage('Clone repository contents') {
+        git branch: '$branchName',credentialsId: '$credentialsId', url: '$repositoryURL'
+    }
+
+    stage('List repository contents for verification') {
+        sh 'ls'
+    }
+}
+```
+
+And you should be working with your desired branch.
+
 ## Webhooks
 
 As we previously mentioned, there is another way of integrating Jenkins with your repositories and that is using webhooks. This is a way of configuring your repository to alert Jenkins whenever a change is pushed to a certain branch for example, and in turn Jenkins triggers a certain job or pipeline.
