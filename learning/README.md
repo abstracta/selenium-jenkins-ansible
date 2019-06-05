@@ -1,9 +1,11 @@
 # Learning / Aprendizaje
 
-+ Installing your first Jenkins server [english](installingJenkins/installJenkins.md)/[español](installingJenkins/instalarJenkins.md)
++ [Installing your first Jenkins server](installingJenkins/installJenkins.md)
 
-+ Working with repositories in Jenkins [english](pollingJenkins/pollRepository.md)/[español](pollingJenkins/pollearRepositorio.md)
++ [Working with repositories in Jenkins](pollingJenkins/pollRepository.md)
 
-+ Sending emails with Jenkins [english](sendingMails/sendingMails.md)
++ [Sending emails with Jenkins](sendingMails/sendingMails.md)
 
-+ Running tests using Maven [english](mavenTests/mavenTests.md)
++ [Running tests using Maven](mavenTests/mavenTests.md)
+
++ [Working with parameters inside pipelines](usingParameters/params.md)
