@@ -40,6 +40,7 @@ node {
     stage('List repository contents for verification') {
         sh 'ls'
     }
+
 }
 ```
 
@@ -64,6 +65,7 @@ node {
     stage('List repository contents for verification') {
         sh 'ls'
     }
+
 }
 ```
 

@@ -26,23 +26,32 @@ Now we are going to create a pipeline that clones the maven repository we used i
 ``` groovy
 
 node {
-    try{  
+
+    try{
+  
         stage('Clone maven project from repository') {
             git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
         }
+
         stage('Check contents of pom.xml') {
             sh 'cat pom.xml'
         }
+
     } catch(Exception e) {
+
         throw e
+
     } finally {
+
         stage('Notify results') {
             emailext attachLog: true, body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
             Check console output at $BUILD_URL to view the results.''', 
             subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', 
             to: 'juan.sobral@abstracta.com.uy'
         }
+
     }
+
 }
 
 ```

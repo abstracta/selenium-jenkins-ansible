@@ -26,12 +26,15 @@ First let's create a new pipeline which clones this maven project into its works
 
 ``` groovy
 node {
+
     stage('Clone maven project from repository.') {
         git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
     }
+
     stage('Run tests using maven.') {
         sh 'mvn clean test'
     }
+
 }
 ```
 
@@ -43,15 +46,19 @@ We just need to add a section to our pipeline, leaving it looking like this:
 
 ``` groovy
 node {
+
     stage('Clone maven project from repository.') {
         git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
     }
+
     stage('Run tests using maven.') {
         sh 'mvn clean test'
     }
+
     stage('Analyze test results.') {
         junit 'target/surefire-reports/**/*.xml'
     }
+
 }
 ```
 
@@ -72,20 +79,29 @@ Our test report isn't showing anything because it never gets to the analyze test
 ``` groovy
 
 node {
-    try{  
+
+    try{
+  
         stage('Clone maven project from repository') {
             git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
         }
+
         stage('Run tests using maven') {
             sh 'mvn clean test'
         }
+
     } catch(Exception e) {
+
         throw e
+
     } finally {
+
         stage('Analyze test results.') {
             junit 'target/surefire-reports/**/*.xml'
         }
+
     }
+
 }
 
 ```
