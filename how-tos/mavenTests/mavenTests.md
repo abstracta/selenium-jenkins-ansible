@@ -14,7 +14,7 @@ sudo apt install maven
 
 your tests should run, and you should see an output similar to this one:
 
-![Maven test execution](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/mavenTests/img/Capture8.PNG)
+![Maven test execution](/how-tos/mavenTests/img/Capture8.PNG)
 
 After you've run your tests, if you were using JUnit, you will find your test results' XML inside the /target/surefire-reports/TEST*.xml file. If you have more than one test suite, you will find one xml for each suite.
 
@@ -26,12 +26,15 @@ First let's create a new pipeline which clones this maven project into its works
 
 ``` groovy
 node {
+
     stage('Clone maven project from repository.') {
         git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
     }
+
     stage('Run tests using maven.') {
         sh 'mvn clean test'
     }
+
 }
 ```
 
@@ -43,49 +46,62 @@ We just need to add a section to our pipeline, leaving it looking like this:
 
 ``` groovy
 node {
+
     stage('Clone maven project from repository.') {
         git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
     }
+
     stage('Run tests using maven.') {
         sh 'mvn clean test'
     }
+
     stage('Analyze test results.') {
         junit 'target/surefire-reports/**/*.xml'
     }
+
 }
 ```
 
 After a couple of executions you should start seeing a graph similar to this one in your job:
 
-![Test results graph](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/mavenTests/img/Capture9.PNG)
+![Test results graph](/how-tos/mavenTests/img/Capture9.PNG)
 
 Now I'm gonna add a couple of passing unit tests, to let you know what changes to expect in the graph in that kind of situation:
 
-![Improved test results graph](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/mavenTests/img/Capture10.PNG)
+![Improved test results graph](/how-tos/mavenTests/img/Capture10.PNG)
 
 Now I'm gonna add a couple of failing tests, and if that were the case in your project you should see something like this:
 
-![Not working test results](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/mavenTests/img/Capture11.PNG)
+![Not working test results](/how-tos/mavenTests/img/Capture11.PNG)
 
 Our test report isn't showing anything because it never gets to the analyze test result steps. In order to get that to happen we will leverage the fact that our pipeline supports groovy syntax to do the following:
 
 ``` groovy
 
 node {
-    try{  
+
+    try{
+  
         stage('Clone maven project from repository') {
             git credentialsId: 'githubCredentials', url: 'https://github.com/sobraljuanpa/mavenTest.git'
         }
+
         stage('Run tests using maven') {
             sh 'mvn clean test'
         }
+
     } catch(Exception e) {
+
         throw e
+
     } finally {
+
         stage('Analyze test results.') {
             junit 'target/surefire-reports/**/*.xml'
         }
+
     }
+
 }
 
 ```
@@ -94,7 +110,7 @@ Now, what we have in the snippet is basically a common try-catch block, in this 
 
 Once you have that working, you should see something like this:
 
-![Failing test results reported](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/mavenTests/img/Capture12.PNG)
+![Failing test results reported](/how-tos/mavenTests/img/Capture12.PNG)
 
 As you can see, now the build fails but still executes the last step, and you can also see that our test result trends changed due to the failures.
 
