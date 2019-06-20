@@ -1,19 +1,13 @@
 # selenium-jenkins-ansible
 
-## [Learning / Aprendizaje](/learning/README.md)
+## [Getting started](/getting-started/README.md)
 
-En esta sección van a encontrar guías o tutoriales sobre como realizar varias tareas comunes a la mayoría de los escenarios en los que nos vamos a encontrar cuando trabajemos con Jenkins.
+In this section, you will find a step by step walkthrough for your first Jenkins installation and initial configuration.
 
-In this section, you will find guides on several tasks you will probably face when working with Jenkins.
+## [How to's](/how-tos/README.md)
 
-## [Provisioning / Aprovisionamiento](/provisioning/README.md)
-
-En esta sección van a encontrar varios playbooks de Ansible que van a poder usar para configurar rápidamente sus servidores, de manera de no tener problemas de dependencias a la hora de usar los templates que van a poder encontrar en este repositorio.
-
-In this section you will find Ansible playbooks that will get you up and running quickly with our templates, by managing the desired state configuration in order for you not to worry about the dependencies.
+In this section you will find several small articles on how to perform certain tasks when working with Jenkins, such as notifying via email or displaying test results using JUnit plugin.
 
 ## [Templates](/templates/README.md)
-
-En esta sección van a encontrar templates mostrando un pipeline básico usando un stack particular de tecnologías, por ejemplo un pipeline que clone un repositorio que contiene un proyecto Maven con pruebas usando Selenium, las ejecute y analice los resultados con el plugin de JUnit.
 
 Here you will find some templates showcasing some basic pipelines in order to work with a certain technology stack, say Maven+Selenium+JUnit.
