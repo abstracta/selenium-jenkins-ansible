@@ -38,25 +38,25 @@ ansible-playbook installJenkins.yml --ask-become-pass
 
 You should see an output similar to the following one:
 
-![Playbook execution](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/installingJenkins/img/Capture1.PNG)
+![Playbook execution](/getting-started/installingJenkins/img/Capture1.PNG)
 
 These messages tell us that java and jenkins were installed correctly, that jenkins is running and also tell us the initial admin password, which we'll need in order to configure our Jenkins instance.
 
 Now open a browser on your server and go to http://localhost:8080. If you installed it on a VM, just go to http://vmIpAddress:8080 from your local browser. Regardless, you should be greeted by this screen:
 
-![Initial jenkins page](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/installingJenkins/img/Capture2.PNG)
+![Initial jenkins page](/getting-started/installingJenkins/img/Capture1.PNG)
 
 Now just copy the password that the playbook conveniently shows you, paste it in the field and click on Continue.
 
 You will be presented with this screen:
 
-![Jenkins plugins](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/installingJenkins/img/Capture3.PNG)
+![Jenkins plugins](/getting-started/installingJenkins/img/Capture3.PNG)
 
 Since we assume little to no Jenkins experience here, we reccomend installing all suggested plugins, but if you would rather not install bloat that you won't use, you can just select which plugins to install.
 
 After this you will be prompted to create a user, and after you are done with that you will see this screen, which indicates that you are now ready to start doing amazing things with Jenkins!
 
-![Jenkins initial page](https://github.com/abstracta/selenium-jenkins-ansible/blob/develop/learning/installingJenkins/img/Capture4.PNG)
+![Jenkins initial page](/getting-started/installingJenkins/img/Capture4.PNG)
 
 ## Installing on a non Ubuntu based operating system
 
