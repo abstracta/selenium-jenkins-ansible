@@ -1,4 +1,4 @@
-# Provisioning
+# How to's
 
 Inside this section you will find several short How-to's explaining how to perform certain common tasks you might face when building Jenkins pipelines.
 
