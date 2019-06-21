@@ -27,7 +27,7 @@ git clone https://github.com/abstracta/selenium-jenkins-ansible.git
 Then, move into the directory which contains the playbooks:
 
 ``` sh
-cd provisioning/playbooks
+cd templates/playbooks
 ```
 
 And run the playbook with the following command:
