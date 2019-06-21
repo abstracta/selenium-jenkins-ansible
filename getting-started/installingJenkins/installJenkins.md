@@ -56,12 +56,23 @@ After this you will be prompted to create a user, and after you are done with th
 
 ![Jenkins initial page](/getting-started/installingJenkins/img/Capture4.PNG)
 
-## Installing on a non Ubuntu based operating system
+Once you are done with that, you need to install Maven and Firefox, as well as download the webdriver that Selenium will use.
 
-In order to install Jenkins on a non Ubuntu based OS you have to follow these steps:
+In order to install Maven and Firefox, you can run this command:
 
-1. Install Java8
-2. Add Jenkins repository key
-3. Update repository list
-4. Install Jenkins
-5. Start Jenkins service
+``` sh
+sudo apt-get install maven firefox
+```
+
+Once you are done with that, head over to [the official geckodriver releases' page](https://github.com/mozilla/geckodriver/releases) and download the latest version. Then extract it to the location of your choice.
+
+After that, open the /templates/projects/gettingStarted folder in a text editor, and modify the setUp method in the test classes in order to point it towards the webdriver you just extracted. The section you have to modify is this one:
+
+![Line to modify](/getting-started/installingJenkins/img/Capture5.PNG)
+
+Once you are done with that, you are ready to start running your tests using Jenkins.
+
+Head over to http://localhost:8080 if your server has a GUI, otherwise just open http://yourServersIP:8080 on your browser, and click on the New Item button on the upper left side of your Jenkins' homepage.
+
+Choose the pipeline option, choose a name for it and scroll down until you see this:
+
