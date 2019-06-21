@@ -37,10 +37,6 @@
         name: jenkins
         state: started
 
-    - name: Install Maven
-      apt:
-        name: maven
-
     - name: Verify Jenkins service status
       command: service jenkins status warn=False
       register: jenkins_status
