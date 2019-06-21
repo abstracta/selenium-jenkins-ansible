@@ -1,0 +1,61 @@
+---
+
+- name: Install Jenkins and its prerequisites
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+
+    - name: Install jdk8 (Jenkins prerequisite)
+      apt:
+        name: openjdk-8-jdk
+
+    - name: Verify java version
+      command: java -version
+      register: java_version
+
+    - name: Add Jenkins apt key
+      apt_key:
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+        state: present
+
+    - name: Add Jenkins apt repository
+      apt_repository:
+        repo: deb http://pkg.jenkins-ci.org/debian binary/
+        state: present
+
+    - name: Update repositories cache and install Jenkins
+      apt:
+        name: jenkins
+        update_cache: yes
+
+    - name: Open 8080(Jenkins default) port in firewall 
+      command: ufw allow 8080
+
+    - name: Start Jenkins Service
+      service:
+        name: jenkins
+        state: started
+
+    - name: Verify Jenkins service status
+      command: service jenkins status warn=False
+      register: jenkins_status
+
+    - pause:
+        seconds: 30
+
+    - name: Get Jenkins initial admin password(required for initial config)
+      command: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: initial_admin_password
+
+    - name: Print java version
+      debug:
+        var: java_version.stderr_lines
+
+    - name: Print jenkins status
+      debug:
+        var: jenkins_status.stdout_lines
+
+    - name: Print initial admin password
+      debug:
+        var: initial_admin_password.stdout
