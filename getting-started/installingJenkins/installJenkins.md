@@ -42,8 +42,6 @@ You should see an output similar to the following one:
 
 These messages tell us that java and jenkins were installed correctly, that jenkins is running and also tell us the initial admin password, which we'll need in order to configure our Jenkins instance.
 
-Now open a browser on your server and go to http://localhost:8080. If you installed it on a VM, just go to http://vmIpAddress:8080 from your local browser. Regardless, you should be greeted by this screen:
-
 ![Initial jenkins page](/getting-started/installingJenkins/img/Capture2.PNG)
 
 Now just copy the password that the playbook conveniently shows you, paste it in the field and click on Continue.
