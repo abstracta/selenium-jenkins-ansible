@@ -1,3 +1,6 @@
+
+![GIT-Jenkins](/how-tos/pollingJenkins/img/Header.png) 
+
 # Working with repositories in Jenkins
 
 As you go forward in your Jenkins journey, sooner or later you will find that you want to poll a repository for changes, and trigger some event in case there are any.
@@ -76,3 +79,30 @@ And you should be working with your desired branch.
 As we previously mentioned, there is another way of integrating Jenkins with your repositories and that is using webhooks. This is a way of configuring your repository to alert Jenkins whenever a change is pushed to a certain branch for example, and in turn Jenkins triggers a certain job or pipeline.
 
 The issue here is that you are probably going to be working with your Jenkins repository in a private network, and in order to use Jenkins your repository should be able to notify your Jenkins that it should act, so we are skipping that part for now.
+
+## Accessing GitHub using two-factor authentication 
+
+Suppose that we need to pull a GitHub repository which contains a two factor authentication. In order to do so, you must follow the below explanation,
+
+The first step that we must follow is to Sign In in our GitHub account, which has privileges and access to the repository, and then **1-** Go to *Settings*
+
+![Settings](/how-tos/pollingJenkins/img/Capture-1.PNG)
+
+**2-** *Developer settings*
+
+![DeveloperSettings](/how-tos/pollingJenkins/img/Capture-2.PNG)
+
+**3-** *Developer settings* -> *Personal access tokens* -> *Generate new token* 
+
+![GenerateNewToken](/how-tos/pollingJenkins/img/Capture-3.PNG)
+
+**4-** *A window with all kinds of possible privileges will be displayed* - Here you can adapt the permissions that the token will get as per as your needs 
+
+![CreatingToken](/how-tos/pollingJenkins/img/Capture-4.PNG)
+
+
+**5-** After to select all the privileges that are needed, click on *'Generate token'*
+
+![Token](/how-tos/pollingJenkins/img/Capture-6.PNG)
+
+This token contains your account information, so now, if we want to pull or make any action in a repository which contains a two-factor authentication, instead of type our password in Jenkins configuration, we will provide this token, that apart of the access to your account and repository, provides the given previleges to Jenkins and allows to skip the two-factor authentication. 
