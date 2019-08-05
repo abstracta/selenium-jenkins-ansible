@@ -82,9 +82,11 @@ The issue here is that you are probably going to be working with your Jenkins re
 
 ## Accessing GitHub using two-factor authentication 
 
-Suppose that we need to pull a GitHub repository which contains a two factor authentication. In order to do so, you must follow the below explanation,
+Suppose that we need to pull a GitHub repository which uses two factor authentication. In order to do so, you must follow the explanation below.
 
-The first step that we must follow is to Sign In in our GitHub account, which has privileges and access to the repository, and then **1-** Go to *Settings*
+The first step is to sign into a GitHub account, which has privileges and access to the repository, and then:
+
+**1-** Go to *Settings*
 
 ![Settings](/how-tos/pollingJenkins/img/Capture-1.PNG)
 
@@ -101,8 +103,8 @@ The first step that we must follow is to Sign In in our GitHub account, which ha
 ![CreatingToken](/how-tos/pollingJenkins/img/Capture-4.PNG)
 
 
-**5-** After to select all the privileges that are needed, click on *'Generate token'*
+**5-** After selecting the necessary privileges, click on *'Generate token'*
 
 ![Token](/how-tos/pollingJenkins/img/Capture-6.PNG)
 
-This token contains your account information, so now, if we want to pull or make any action in a repository which contains a two-factor authentication, instead of type our password in Jenkins configuration, we will provide this token, that apart of the access to your account and repository, provides the given previleges to Jenkins and allows to skip the two-factor authentication. 
+This token contains your account information, so if we want to pull or make any action in a repository which uses two-factor authentication, instead of typing our password in Jenkins' credential configuration, we will provide this token.
