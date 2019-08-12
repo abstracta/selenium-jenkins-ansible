@@ -42,6 +42,8 @@ You should see an output similar to the following one:
 
 These messages tell us that java and jenkins were installed correctly, that jenkins is running and also tell us the initial admin password, which we'll need in order to configure our Jenkins instance.
 
+Open the following url http://localhost:8080 locally from your Jenkins server or go to http://$virtualMachineIp:8080 from your own computer.
+
 ![Initial jenkins page](/getting-started/installingJenkins/img/Capture2.PNG)
 
 Now just copy the password that the playbook conveniently shows you, paste it in the field and click on Continue.
@@ -70,9 +72,61 @@ After that, open the /templates/projects/gettingStarted folder in a text editor,
 
 ![Line to modify](/getting-started/installingJenkins/img/Capture5.PNG)
 
-Once you are done with that, you are ready to start running your tests using Jenkins.
+Once you are done with that, you are almost ready to start running your tests using Jenkins.
+
+We are going to configure two more things in order to add value to our pipeline: Allure in order to process the generated test results and Extended Email Notification in order to send the execution log automatically.
+
+First, go to http://localhost:8080 if your server has a GUI, otherwise just open http://yourServersIP:8080 on your browser.
+
+### Installing and configuring Allure
+
+Head over to Manage Jenkins -> Manage Plugins, go to the *Available* tab and put allure inside the *Filter* field. Check the box next to the Allure plugin and click on the *Install without restart* button.
+
+![Install plugin screen](img/Capture7.PNG)
+
+Once you are done installing Allure, head over to Manage Jenkins -> Global Tool Configuration, scroll until you see the *Allure Commandline* section, click on *Add Allure Commandline* and configure it as it shows in the following image:
+
+![Allure config](img/Capture8.PNG)
+
+Next, click on the *Save* button and you're good to go. Now we have to configure email notifications.
+
+### Configuring email notifications
+
+We have a section on this already inside the repo: [I'm a relative reference to a repository file](../how-tos/sendingMails/sendingMails.md)
+
+### Configuring the pipeline
 
 Head over to http://localhost:8080 if your server has a GUI, otherwise just open http://yourServersIP:8080 on your browser, and click on the New Item button on the upper left side of your Jenkins' homepage.
 
 Choose the pipeline option, choose a name for it and scroll down until you see this:
 
+![Pipeline edition screen](img/Capture6.PNG)
+
+Put this snippet there, changing the variables as needed:
+
+``` groovy
+node {
+
+    try{
+
+        stage('Run maven tests') {
+            sh 'cd $pathToProjectFolder && mvn clean test'
+        }
+
+    } catch (e) {
+        
+        throw e
+
+    } finally {
+
+        allure includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: '$pathToProjectFolder/allure-results']]
+
+        emailext attachLog: true, body: 'Job ${JOB_NAME} build ${BUILD_NUMBER} \n More info at: ${BUILD_URL}', subject: 'Pipeline notification', to: 'juan.sobral@abstracta.com.uy'
+
+    }
+
+}
+
+fclqjvlhrdwloknk
+
+```
