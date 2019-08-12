@@ -10,6 +10,10 @@
       apt:
         name: openjdk-8-jdk
 
+    - name: Install jdk8 (Jenkins prerequisite)
+      apt:
+        name: maven
+
     - name: Verify java version
       command: java -version
       register: java_version
