@@ -110,7 +110,7 @@ node {
     try{
 
         stage('Copy repository maven project to workspace') {
-            sh 'cp $rutaAlRepo/templates/projects/gettingStarted/* ./'
+            sh 'cp $routeToRepository/templates/projects/gettingStarted/* ./'
         }
 
         stage('Run maven tests') {
