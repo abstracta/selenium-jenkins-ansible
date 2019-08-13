@@ -38,7 +38,7 @@ You should see an output similar to the following one:
 
 ![Playbook execution](img/Capture1.PNG)
 
-These messages tell us that java and jenkins were installed correctly, that jenkins is running and also tell us the initial admin password, which we'll need in order to configure our Jenkins instance.
+These messages tell us that java and jenkins were installed correctly, that jenkins is running and also tells us the initial admin password, which we'll need in order to configure our Jenkins instance.
 
 Open the following url http://localhost:8080 locally from your Jenkins server or go to http://$virtualMachineIp:8080 from your own computer.
 
@@ -90,7 +90,7 @@ Next, click on the *Save* button and you're good to go. Now we have to configure
 
 ### Configuring email notifications
 
-We have a section on this already inside the repo: [I'm a relative reference to a repository file](../how-tos/sendingMails/sendingMails.md)
+We have a section on this already inside the repo: [Sending emails with Jenkins](../how-tos/sendingMails/sendingMails.md)
 
 ### Configuring the pipeline
 
