@@ -1,8 +1,6 @@
 # Installing your first Jenkins server
 
-So, you read the post and wanted to do a little POC to see for yourself how this stack worked together, or maybe just want to try the playbooks. Here you are gonna learn how!
-
-There are two playbooks in this project, the first one takes care of the Jenkins installation and the second one sets it up to run headless Selenium tests.
+So, you read the post and wanted to do a little POC to see for yourself how this stack worked together. Here you are gonna learn how!
 
 The only requirement is that the server's distribution is Ubuntu based and that you have ansible previously installed. In case you haven't, you just need to open your terminal and execute the following command:
 
