@@ -38,25 +38,25 @@ ansible-playbook installJenkins.yml --ask-become-pass
 
 You should see an output similar to the following one:
 
-![Playbook execution](/getting-started/installingJenkins/img/Capture1.PNG)
+![Playbook execution](img/Capture1.PNG)
 
 These messages tell us that java and jenkins were installed correctly, that jenkins is running and also tell us the initial admin password, which we'll need in order to configure our Jenkins instance.
 
 Open the following url http://localhost:8080 locally from your Jenkins server or go to http://$virtualMachineIp:8080 from your own computer.
 
-![Initial jenkins page](/getting-started/installingJenkins/img/Capture2.PNG)
+![Initial jenkins page](img/Capture2.PNG)
 
 Now just copy the password that the playbook conveniently shows you, paste it in the field and click on Continue.
 
 You will be presented with this screen:
 
-![Jenkins plugins](/getting-started/installingJenkins/img/Capture3.PNG)
+![Jenkins plugins](img/Capture3.PNG)
 
 Since we assume little to no Jenkins experience here, we reccomend installing all suggested plugins, but if you would rather not install bloat that you won't use, you can just select which plugins to install.
 
 After this you will be prompted to create a user, and after you are done with that you will see this screen, which indicates that you are now ready to start doing amazing things with Jenkins!
 
-![Jenkins initial page](/getting-started/installingJenkins/img/Capture4.PNG)
+![Jenkins initial page](img/Capture4.PNG)
 
 Once you are done with that, you need to install Maven and Firefox, as well as download the webdriver that Selenium will use.
 
@@ -70,7 +70,7 @@ Once you are done with that, head over to [the official geckodriver releases' pa
 
 After that, open the /templates/projects/gettingStarted folder in a text editor, and modify the setUp method in the test classes in order to point it towards the webdriver you just extracted. The section you have to modify is this one:
 
-![Line to modify](/getting-started/installingJenkins/img/Capture5.PNG)
+![Line to modify](img/Capture5.PNG)
 
 Once you are done with that, you are almost ready to start running your tests using Jenkins.
 
