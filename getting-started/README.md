@@ -109,8 +109,12 @@ node {
 
     try{
 
+        stage('Copy repository maven project to workspace') {
+            sh 'cp $rutaAlRepo/templates/projects/gettingStarted/* ./'
+        }
+
         stage('Run maven tests') {
-            sh 'cd $pathToProjectFolder && mvn clean test'
+            sh 'mvn clean test'
         }
 
     } catch (e) {
@@ -119,14 +123,25 @@ node {
 
     } finally {
 
-        allure includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: '$pathToProjectFolder/allure-results']]
+        stage('Generate Allure report') {
+            allure includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: 'target/allure-results']]
+        }
 
-        emailext attachLog: true, body: 'Job ${JOB_NAME} build ${BUILD_NUMBER} \n More info at: ${BUILD_URL}', subject: 'Pipeline notification', to: 'juan.sobral@abstracta.com.uy'
-
+        stage('Send email notifications') {
+            emailext attachLog: true,
+            body: '''Job ${JOB_NAME} build ${BUILD_NUMBER}
+                    More info at: http://yourJenkinsIp:8080/job/yourPipelineName/${BUILD_NUMBER} .
+                    Access the Allure report at: http://yourJenkinsIp:8080/job/yourPipelineName/${BUILD_NUMBER}/allure''',
+            subject: 'Pipeline notifications',
+            to: 'your@email.here,your.other@email.here'
+        }
+        
     }
 
 }
 
-fclqjvlhrdwloknk
-
 ```
+
+Once you've done that, click the *Save* button and click on *Build Now*.
+
+Now sit back and watch your first Jenkins pipeline come to life!
