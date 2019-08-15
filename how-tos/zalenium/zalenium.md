@@ -36,4 +36,36 @@ $ sudo docker run hello-world
 
 If the installation was succesful, you should see output similar to this:
 
-![docker run hello-world output](img/Capture.PNG).
+![docker run hello-world output](img/Capture.PNG)
+
+Once you have installed Docker, you need to give Jenkins permission to use it.
+
+First, we need to create a Docker user group:
+
+``` sh
+$ sudo groupadd docker
+```
+
+Then we need to add jenkins user to the docker group:
+
+``` sh
+$ sudo usermod -aG docker jenkins
+```
+
+Then restart your Jenkins server and create a pipeline with the following code:
+
+``` groovy
+node {
+
+    stage('Verify docker permissions') {
+        sh 'docker run hello-world'
+    }
+
+}
+```
+
+Run it, and if everything went well you should see output similar to this:
+
+![Pipeline execution output](img/Capture1.PNG)
+
+Now we are ready to configure Zalenium.
