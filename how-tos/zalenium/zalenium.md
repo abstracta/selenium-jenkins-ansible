@@ -2,7 +2,7 @@
 
 ## Installing Docker
 
-In order to use Zalenium, we are going to need to have Docker installed in our system first. We are going to give you easy to follow instructions here, but you can always follow the [Official documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/). As usual, these instructions are for Ubuntu based distributions.
+In order to use Zalenium, we are going to need to have Docker installed in our system first. We are going to give you easy to follow instructions here, but you can always follow the [official documentation](https://docs.docker.com/install/linux/docker-ce/ubuntu/). As usual, these instructions are for Ubuntu based distributions.
 
 First, we need to install some packages to allow ```apt``` to use repositories over HTTPS:
 
