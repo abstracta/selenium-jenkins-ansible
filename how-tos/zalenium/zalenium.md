@@ -68,4 +68,6 @@ Run it, and if everything went well you should see output similar to this:
 
 ![Pipeline execution output](img/Capture1.PNG)
 
-Now we are ready to configure Zalenium.
+Now we are ready to use zalenium [Zalenium](https://github.com/zalando/zalenium).
+
+There are mostly two ways to work with Zalenium: having a running grid all the time and pointing your tests towards it, letting it do the heavy lifting.
