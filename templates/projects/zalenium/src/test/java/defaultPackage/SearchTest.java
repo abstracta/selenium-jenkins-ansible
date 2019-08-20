@@ -46,7 +46,7 @@ public class SearchTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception{
         DesiredCapabilities capabilities;
         capabilities = DesiredCapabilities.firefox();
 
