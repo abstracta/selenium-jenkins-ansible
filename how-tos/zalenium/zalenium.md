@@ -68,6 +68,54 @@ Run it, and if everything went well you should see output similar to this:
 
 ![Pipeline execution output](img/Capture1.PNG)
 
-Now we are ready to use zalenium [Zalenium](https://github.com/zalando/zalenium).
+Now we are ready almost ready to start using zalenium [Zalenium](https://github.com/zalando/zalenium).
 
-There are mostly two ways to work with Zalenium: having a running grid all the time and pointing your tests towards it, letting it do the heavy lifting.
+The only thing missing is installing docker-compose which we will use to manage our Zalenium containers.
+
+First run this command in order to download Docker Compose
+
+``` sh
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+Then apply execution permissions to the binary
+
+``` sh
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
+
+In order to test that docker-compose was properly installed, run this command:
+
+```sh
+$ docker-compose -version
+```
+
+If everything was properly installed, you can move on!
+
+## Zalenium
+
+There are mostly two ways to work with Zalenium: having a running grid all the time or dynamically setting it up inside a pipeline, running your tests and then tearing it down. We are going to show you how to do the second.
+
+First, take a look at the file **docker-compose.yml** located in templates/projects/gettingStarted. It describes the environment you are going to deploy: a Zalenium node with a max of eight running dockerSelenium slave containers(two are initially deployed).
+
+In order to use Zalenium, we will need to have a docker-selenium image locally available. You can get it by running the following command:
+
+```sh
+$ docker pull elgalu/selenium
+```
+
+After that, you should cd into the /templates/projects/gettingStarted folder and run this command in order to set the grid up:
+
+```sh
+$ docker-compose up
+```
+
+and the output should be something like this:
+
+![Pipeline execution output](img/Capture2.PNG)
+
+Now you have checked that your zalenium setup is working.
+
+## Using Zalenium inside a pipeline
+
+Now we are going to have to modify our tests in order to run them using grid
