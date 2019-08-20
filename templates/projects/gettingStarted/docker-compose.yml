@@ -1,0 +1,30 @@
+version: '2.1'
+
+services:
+#--------------#
+  zalenium:
+    image: "dosel/zalenium"
+    container_name: zalenium
+    hostname: zalenium
+    tty: true
+    volumes:
+      - /tmp/videos:/home/seluser/videos
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 4444:4444
+    command: >
+      start --desiredContainers 2
+      --maxDockerSeleniumContainers 8
+      --screenWidth 1024 --screenHeight 768
+      --timeZone "America/Montevideo"
+      --videoRecordingEnabled true
+      --sauceLabsEnabled false
+      --browserStackEnabled false
+      --testingBotEnabled false
+      --startTunnel false
+
+networks:
+  prod-network:
+    driver: bridge
+  backup-network:
+    driver: bridge
