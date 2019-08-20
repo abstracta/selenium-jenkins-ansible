@@ -16,6 +16,11 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.*;
 
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.net.URL;
+
 import pages.*;
 
 @RunWith(Parameterized.class)
@@ -45,13 +50,11 @@ public class AddToWishListTest {
     }
 
     @Before
-    public void setUp() {
-        FirefoxBinary firefoxBinary = new FirefoxBinary();
-        firefoxBinary.addCommandLineOptions("--headless");
-        System.setProperty("webdriver.gecko.driver", "/home/juanpa/drivers/geckodriver");
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setBinary(firefoxBinary);
-        driver = new FirefoxDriver(firefoxOptions);
+    public void setUp() throws Exception{
+        DesiredCapabilities capabilities;
+        capabilities = DesiredCapabilities.firefox();
+
+        driver = new RemoteWebDriver(new URL("http://172.18.0.2:4445/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.get("http://opencart.abstracta.us");
