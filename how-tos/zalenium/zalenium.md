@@ -70,7 +70,7 @@ Run it, and if everything went well you should see output similar to this:
 
 Now we are ready almost ready to start using zalenium [Zalenium](https://github.com/zalando/zalenium).
 
-The only thing missing is installing docker-compose which we will use to manage our Zalenium containers.
+The only thing missing is installing docker-compose which we will use to manage our Zalenium containers. As with the Docker installation section, you can either follow the [official documentation](https://docs.docker.com/compose/install/) or this guide which is based on it.
 
 First run this command in order to download Docker Compose
 
