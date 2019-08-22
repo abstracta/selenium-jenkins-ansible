@@ -94,11 +94,50 @@ If everything was properly installed, you can move on!
 
 ## Zalenium
 
-There are mostly two ways to work with Zalenium: having a running grid all the time or dynamically setting it up inside a pipeline, running your tests and then tearing it down. We are going to show you how to do the second.
+There are two ways to work with Zalenium: having a running grid all the time or dynamically setting it up inside a pipeline, running your tests and then tearing it down. 
 
-First, take a look at the file **docker-compose.yml** located in templates/projects/gettingStarted. It describes the environment you are going to deploy: a Zalenium node with a max of eight running dockerSelenium slave containers(two are initially deployed).
+We are going to show you how to do the second.
 
-In order to use Zalenium, we will need to have a docker-selenium image locally available. You can get it by running the following command:
+First, let's take a look at the file **docker-compose.yml** located in templates/projects/zalenium. 
+
+``` yaml
+version: '2.1'
+
+services:
+#--------------#
+  zalenium:
+    image: "dosel/zalenium"
+    container_name: zalenium
+    hostname: zalenium
+    tty: true
+    volumes:
+      - /tmp/videos:/home/seluser/videos
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 4444:4444
+    command: >
+      start --desiredContainers 2
+      --maxDockerSeleniumContainers 8
+      --screenWidth 1024 --screenHeight 768
+      --timeZone "America/Montevideo"
+      --videoRecordingEnabled true
+      --sauceLabsEnabled false
+      --browserStackEnabled false
+      --testingBotEnabled false
+      --startTunnel false
+
+networks:
+  prod-network:
+    driver: bridge
+  backup-network:
+    driver: bridge
+```
+
+It describes the environment you are going to deploy: a Zalenium node with a max of eight running dockerSelenium slave containers(two are initially deployed alongside the Zalenium node).
+
+In order to use Zalenium, we will need to have a docker-selenium image locally available. 
+
+You can get it by running the following command:
 
 ```sh
 $ docker pull elgalu/selenium
@@ -118,4 +157,81 @@ Now you have checked that your zalenium setup is working.
 
 ## Using Zalenium inside a pipeline
 
-Now we are going to have to modify our tests in order to run them using grid
+In order to use this grid, we are going to have to modify the tests' setup we were running before. 
+
+Here you can see the before and the after:
+
+``` java
+// Here is how it was before
+@Before
+public void setUp() {
+    FirefoxBinary firefoxBinary = new FirefoxBinary();
+    firefoxBinary.addCommandLineOptions("--headless");
+    System.setProperty("webdriver.gecko.driver", "/home/juanpa/drivers/geckodriver");
+    FirefoxOptions firefoxOptions = new FirefoxOptions();
+    firefoxOptions.setBinary(firefoxBinary);
+    driver = new FirefoxDriver(firefoxOptions);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+    driver.get("http://opencart.abstracta.us");
+    homePage = new HomePage(driver);
+}
+
+// Here is how it is now
+@Before
+public void setUp() throws Exception{
+    DesiredCapabilities capabilities;
+    capabilities = DesiredCapabilities.firefox();
+
+    driver = new RemoteWebDriver(new URL("http://172.18.0.2:4445/wd/hub"), capabilities);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+    driver.get("http://opencart.abstracta.us");
+    homePage = new HomePage(driver);
+}
+```
+
+We are basically telling our tests that their driver will no longer be found locally, but it will be provided by the grid we will deploy.
+
+We will be providing you with the same test project we used in the [Getting Started](../../getting-started/README.md) section, except now the driver selenium will be using to run its tests will be provided by the Zalenium node we will be deploying inside our pipeline.
+
+The pipeline itself will look like this:
+
+``` groovy
+node {
+
+    try {
+        stage('Copy repository maven project to workspace') {
+            sh 'cp $routeToRepository/templates/projects/zalenium/* ./'
+        }
+
+        stage('Create containers to run tests') {
+            sh 'docker-compose up -d'
+        }
+
+        stage('Run maven tests') {
+            sh 'mvn clean test'
+        }
+
+    } catch(Exception e) {
+
+        throw e
+
+    } finally {
+
+        stage('Stop running containers') {
+            sh 'containers=$(docker ps -aq) && docker stop $containers'
+        }
+
+        stage('Remove remaining containers') {
+            sh 'containers=$(docker ps -aq) && docker rm $containers'
+        }
+
+    }
+
+}
+```
+
+As you can see, we put our pipeline inside a try-catch block.
+
+That is done in order to prevent the pipeline from stopping while leaving the containers running, which would cause every build after the one that failed to fail since we would be trying to deploy already deployed containers.

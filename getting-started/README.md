@@ -143,3 +143,5 @@ node {
 Once you've done that, click the *Save* button and click on *Build Now*.
 
 Now sit back and watch your first Jenkins pipeline come to life!
+
+It will run the tests we provided and create an allure report containing the results which can be viewed in the url that will be notified via mail.
