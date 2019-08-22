@@ -52,7 +52,7 @@ public class LoginTest {
         DesiredCapabilities capabilities;
         capabilities = DesiredCapabilities.firefox();
 
-        driver = new RemoteWebDriver(new URL("http://172.18.0.2:4445/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.get("http://opencart.abstracta.us");
