@@ -10,4 +10,4 @@ Inside this section you will find several short How-to's explaining how to perfo
 
 + [Using parameters inside a pipeline](/how-tos/usingParameters/params.md)
 
-+ [Working with Zalenium](/how-tos/zalenium/params.md)
++ [Working with Zalenium](/how-tos/zalenium/zalenium.md)
