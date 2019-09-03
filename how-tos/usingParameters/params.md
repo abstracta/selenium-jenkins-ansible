@@ -30,7 +30,7 @@ node {
 
 For the first execution, you should not be prompted for any parameterization, rather you should see something like this once you save your pipeline's definition:
 
-![Pipeline showcase](img/Capture0.PNG)
+![Pipeline showcase](../img/Capture0.PNG)
 
 Then just click build now. The pipeline should run as intended, only using the default value for the parameter we set, as we can see in the execution's log:
 
