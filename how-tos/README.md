@@ -9,3 +9,5 @@ Inside this section you will find several short How-to's explaining how to perfo
 + [Sending mails inside a pipeline](/how-tos/sendingMails/sendingMails.md)
 
 + [Using parameters inside a pipeline](/how-tos/usingParameters/params.md)
+
++ [Working with Zalenium](/how-tos/zalenium/params.md)
