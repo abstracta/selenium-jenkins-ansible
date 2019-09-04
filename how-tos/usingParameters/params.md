@@ -30,15 +30,15 @@ node {
 
 For the first execution, you should not be prompted for any parameterization, rather you should see something like this once you save your pipeline's definition:
 
-![Pipeline showcase](/how-tos/usingParameters/img/Capture0.PNG)
+![Pipeline showcase](/how-tos/usingParameters/img/capture0.PNG)
 
 Then just click build now. The pipeline should run as intended, only using the default value for the parameter we set, as we can see in the execution's log:
 
-![Pipeline first run](/how-tos/usingParameters/img/Capture1.PNG)
+![Pipeline first run](/how-tos/usingParameters/img/capture1.PNG)
 
 After that first execution, if you go and try to build the pipeline it will say Build with Parameters instead of Build Now, and if you click that button you should see something like this:
 
-![Pipeline parameters](/how-tos/usingParameters/img/Capture2.PNG)
+![Pipeline parameters](/how-tos/usingParameters/img/capture2.PNG)
 
 Where you can see how the variables that we set in our parameter, such as Name, Description and DefaultValue have taken their place.
 
@@ -73,6 +73,6 @@ node {
 
 And the first execution of this new pipeline should look something like this:
 
-![Pipeline with multiple parameters](/how-tos/usingParameters/img/Capture3.PNG)
+![Pipeline with multiple parameters](/how-tos/usingParameters/img/capture3.PNG)
 
 So, there you have it, now you can work with parameters inside your Jenkins pipelines!
