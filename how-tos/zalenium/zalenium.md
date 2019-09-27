@@ -235,3 +235,26 @@ node {
 As you can see, we put our pipeline inside a try-catch block.
 
 That is done in order to prevent the pipeline from stopping while leaving the containers running, which would cause every build after the one that failed to fail since we would be trying to deploy already deployed containers.
+
+## Zalenium/Docker common issues
+
+Problems with, 
+
+* *docker-compose up*
+
+A common issue that we can find is the following one, 
+
+![Pipeline execution output](img/docker_zalenium_error.PNG)
+
+Simply restaring Docker is not going to fix the problem, so what we should do is follow the exact steps below:   
+
+- Close "Docker Desktop" 
+
+- Run the commands below: 
+```xml
+net stop com.docker.service 
+net start com.docker.service 
+```
+
+- Launch "Docker Desktop" again
+ 
