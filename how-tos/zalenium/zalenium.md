@@ -250,7 +250,7 @@ Simply restaring Docker is not going to fix the problem, so what we should do is
 
 - Close "Docker Desktop" 
 
-- Run the commands below: 
+- Run the commands below in PowerShell as administrator: 
 ```xml
 net stop com.docker.service 
 net start com.docker.service 
